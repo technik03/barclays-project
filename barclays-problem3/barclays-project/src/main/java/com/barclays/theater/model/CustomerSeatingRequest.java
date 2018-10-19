@@ -8,13 +8,31 @@ import java.util.TreeMap;
 /**
  * CustomerSeatingRequest is the object model of all the information about the seating in the
  * theater and Customer request fed into this Exercise in file format.
+ * 
+ * @author niharika
  */
 public class CustomerSeatingRequest {
   private TreeMap<Integer, Customer> customerMap = new TreeMap<Integer, Customer>();
-  private List<StringBuilder> lineReaderText = new ArrayList<>();
-  private int emptyLineNumber = 0;
+  private List<StringBuilder> lineReaderText = new ArrayList<StringBuilder>();
+  private Integer emptyLineNumber = 0;
   private Integer totalLines = new Integer(0);
-  private int[][] seatingMatrix = new int[6][6];
+  private Integer[][] seatingMatrix = new Integer[6][6];
+
+  public CustomerSeatingRequest() {
+    super();
+    // TODO Auto-generated constructor stub
+  }
+
+  public CustomerSeatingRequest(TreeMap<Integer, Customer> customerMap,
+      List<StringBuilder> lineReaderText, Integer emptyLineNumber, Integer totalLines,
+      Integer[][] seatingMatrix) {
+    super();
+    this.customerMap = customerMap;
+    this.lineReaderText = lineReaderText;
+    this.emptyLineNumber = emptyLineNumber;
+    this.totalLines = totalLines;
+    this.seatingMatrix = seatingMatrix;
+  }
 
   public TreeMap<Integer, Customer> getCustomerMap() {
     return customerMap;
@@ -24,11 +42,11 @@ public class CustomerSeatingRequest {
     this.customerMap = customerMap;
   }
 
-  public int getEmptyLineNumber() {
+  public Integer getEmptyLineNumber() {
     return emptyLineNumber;
   }
 
-  public void setEmptyLineNumber(int emptyLineNumber) {
+  public void setEmptyLineNumber(Integer emptyLineNumber) {
     this.emptyLineNumber = emptyLineNumber;
   }
 
@@ -40,11 +58,11 @@ public class CustomerSeatingRequest {
     this.totalLines = totalLines;
   }
 
-  public int[][] getSeatingMatrix() {
+  public Integer[][] getSeatingMatrix() {
     return seatingMatrix;
   }
 
-  public void setSeatingMatrix(int[][] seatingMatrix) {
+  public void setSeatingMatrix(Integer[][] seatingMatrix) {
     this.seatingMatrix = seatingMatrix;
   }
 
