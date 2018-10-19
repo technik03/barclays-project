@@ -9,6 +9,8 @@ import com.barclays.theater.seating.SeatingAndCustomerOrder;
 
 /**
  * Main app class to execute to see the desired output.
+ * 
+ * @author niharika
  */
 public class TheaterApp {
 
