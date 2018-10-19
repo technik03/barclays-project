@@ -12,10 +12,17 @@ import com.barclays.theater.model.Customer;
 import com.barclays.theater.model.CustomerSeatingRequest;
 
 /**
- * This class represents sale request object.
+ * This class represents sale request object. It extracts info from the file.
+ * 
+ * @author niharika
  *
  */
 public class ProcessSaleRequest {
+
+  public ProcessSaleRequest() {
+    super();
+    // TODO Auto-generated constructor stub
+  }
 
   /**
    * It tries to load and parses the input file. And adds the extracted info into the
@@ -25,6 +32,9 @@ public class ProcessSaleRequest {
    * @return
    */
   public CustomerSeatingRequest extractInfoFromFile(final String fileName) {
+    if (fileName == null || fileName.isEmpty()) {
+      return null;
+    }
     InputStream resourceAsStream = null;
     CustomerSeatingRequest CustomerSeatingRequest = null;
     TreeMap<Integer, Customer> customerMap = new TreeMap<Integer, Customer>();
@@ -33,7 +43,7 @@ public class ProcessSaleRequest {
       LineNumberReader in =
           new LineNumberReader(new InputStreamReader(TheaterApp.class.getClassLoader()
               .getResourceAsStream(fileName)));
-      int emptyLineNumber = 0;
+      Integer emptyLineNumber = 0;
       Integer totalLines = new Integer(0);
 
       List<StringBuilder> lineReaderText = new ArrayList<>();
@@ -65,18 +75,27 @@ public class ProcessSaleRequest {
     return CustomerSeatingRequest;
   }
 
+  /**
+   * This is used to set customer seating request.
+   * 
+   * @param customerMap
+   * @param emptyLineNumber
+   * @param totalLines
+   * @param lineReaderText
+   * @return
+   */
   private CustomerSeatingRequest setCustomerSeatingRequest(
-      final TreeMap<Integer, Customer> customerMap, final int emptyLineNumber,
+      final TreeMap<Integer, Customer> customerMap, final Integer emptyLineNumber,
       final Integer totalLines, final List<StringBuilder> lineReaderText) {
-    CustomerSeatingRequest CustomerSeatingRequest;
-    int[][] seatingMatrix = new int[6][6];
-    CustomerSeatingRequest = new CustomerSeatingRequest();
-    CustomerSeatingRequest.setEmptyLineNumber(emptyLineNumber);
-    CustomerSeatingRequest.setLineReaderText(lineReaderText);
-    CustomerSeatingRequest.setCustomerMap(customerMap);
-    CustomerSeatingRequest.setSeatingMatrix(seatingMatrix);
-    CustomerSeatingRequest.setTotalLines(totalLines);
-    return CustomerSeatingRequest;
+    CustomerSeatingRequest customerSeatingRequest;
+    Integer[][] seatingMatrix = new Integer[6][6];
+    customerSeatingRequest = new CustomerSeatingRequest();
+    customerSeatingRequest.setEmptyLineNumber(emptyLineNumber);
+    customerSeatingRequest.setLineReaderText(lineReaderText);
+    customerSeatingRequest.setCustomerMap(customerMap);
+    customerSeatingRequest.setSeatingMatrix(seatingMatrix);
+    customerSeatingRequest.setTotalLines(totalLines);
+    return customerSeatingRequest;
   }
 
 }
