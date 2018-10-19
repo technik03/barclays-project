@@ -11,7 +11,7 @@ public class DirectedEdge {
     this.time = time;
   }
 
-  public DirectedEdge(String sourceName, String destinationName, Integer time) {
+  public DirectedEdge(String sourceName, String destinationName, int time) {
     this.source = new Vertex(sourceName);
     this.destination = new Vertex(destinationName);
     this.time = time;

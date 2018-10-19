@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 /**
  * Model object that represents a theater for Customer.
+ * 
+ * @author niharika
  */
 public class Customer implements Serializable {
   private static final long serialVersionUID = 2192027696636179257L;
@@ -11,9 +13,14 @@ public class Customer implements Serializable {
   public Integer rowAssigned;
   public Integer sectionAssigned;
   public String comments;
-  public int seatingNeeded;
+  public Integer seatingNeeded;
 
-  public Customer(String name, int seatingNeeded) {
+  public Customer() {
+    super();
+    // TODO Auto-generated constructor stub
+  }
+
+  public Customer(String name, Integer seatingNeeded) {
     this.name = name;
     this.seatingNeeded = seatingNeeded;
   }
@@ -50,11 +57,11 @@ public class Customer implements Serializable {
     this.comments = comments;
   }
 
-  public int getSeatingNeeded() {
+  public Integer getSeatingNeeded() {
     return seatingNeeded;
   }
 
-  public void setSeatingNeeded(int seatingNeeded) {
+  public void setSeatingNeeded(Integer seatingNeeded) {
     this.seatingNeeded = seatingNeeded;
   }
 

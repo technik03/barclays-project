@@ -8,12 +8,15 @@ import java.util.TreeSet;
 
 public class DijkstraGraphMap {
   // mapping of vertex names to Vertex objects, built from a set of Edges
-  private final Map<String, Vertex> graphMap;
+  private final Map<String, Vertex> graphMap;//adding a validation on graphmap-empty null
 
+  //Constructor will initialize the graph:
+  //for each directed edge, it will add source and destination vertex.
+  //for each edge, it will add neighbors to each source vertex
   public DijkstraGraphMap(final List<DirectedEdge> directedEdges) {
-    graphMap = new HashMap<>(directedEdges.size());
+    graphMap = new HashMap<>(directedEdges.size()); //add the parameters inside the hashmap<..>
     // Populate all the vertices from the edges
-    for (DirectedEdge e : directedEdges) {
+    for (DirectedEdge e : directedEdges) {//For each directed edge, populate source and destination vertex
       if (!graphMap.containsKey(e.getSource().getName()))
         graphMap.put(e.getSource().getName(), new Vertex(e.getSource().getName()));
       if (!graphMap.containsKey(e.getDestination().getName()))
@@ -21,7 +24,7 @@ public class DijkstraGraphMap {
     }
     // Set all the neighbours
     for (DirectedEdge e : directedEdges) {
-      graphMap.get(e.getSource().getName()).getNeighbours()
+      graphMap.get(e.getSource().getName()).getNeighbours() //getNeighbours will be empty so never do empty get
           .put(graphMap.get(e.getDestination().getName()), e.getTime());
     }
   }

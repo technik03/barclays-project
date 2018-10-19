@@ -7,11 +7,18 @@ import com.barclays.theater.model.CustomerSeatingRequest;
 
 /**
  * This represent seating and customer order for customer.
+ * 
+ * @author niharika
  *
  */
 public class SeatingAndCustomerOrder {
-  private int highestSeatSection;
-  private int totalTheaterSeats;
+  private Integer highestSeatSection;
+  private Integer totalTheaterSeats;
+
+  public SeatingAndCustomerOrder() {
+    super();
+    // TODO Auto-generated constructor stub
+  }
 
   /**
    * This is used to extract seating and customer order.
@@ -19,6 +26,9 @@ public class SeatingAndCustomerOrder {
    * @param seatingAndCustomerRequest
    */
   public void extractSeatingAndCustomerOrder(final CustomerSeatingRequest seatingAndCustomerRequest) {
+    if (seatingAndCustomerRequest == null) {
+      return;
+    }
     for (int i = 0, j = 1, partyKey = 1; i < seatingAndCustomerRequest.getTotalLines(); i++, j++) {
       if (i > seatingAndCustomerRequest.getEmptyLineNumber()) {
         partyKey =
@@ -40,7 +50,7 @@ public class SeatingAndCustomerOrder {
    * @param j
    */
   private void extractSeatingMatrix(final List<StringBuilder> lineReaderText,
-      final int[][] seatingMatrix, final int i, final int j) {
+      final Integer[][] seatingMatrix, final Integer i, final Integer j) {
     if (!lineReaderText.isEmpty()) {
       String[] sectionList = lineReaderText.get(i).toString().split(" ");
       for (int section = 0, k = 1; section < sectionList.length; section++, k++) {
@@ -52,8 +62,17 @@ public class SeatingAndCustomerOrder {
     }
   }
 
+  /**
+   * This is used to extract customer order by using the party key
+   * 
+   * @param customerMap
+   * @param lineReaderText
+   * @param i
+   * @param partyKey
+   * @return
+   */
   private int extractCustomerOrder(final TreeMap<Integer, Customer> customerMap,
-      final List<StringBuilder> lineReaderText, final int i, int partyKey) {
+      final List<StringBuilder> lineReaderText, final Integer i, Integer partyKey) {
     if (!lineReaderText.isEmpty()) {
       String[] custmomerList = lineReaderText.get(i).toString().split(" ");
       Customer seatingSection = new Customer(custmomerList[0], Integer.parseInt(custmomerList[1]));
@@ -62,11 +81,11 @@ public class SeatingAndCustomerOrder {
     return partyKey;
   }
 
-  public int getHighestSeatSection() {
+  public Integer getHighestSeatSection() {
     return highestSeatSection;
   }
 
-  public int getTotalTheaterSeats() {
+  public Integer getTotalTheaterSeats() {
     return totalTheaterSeats;
   }
 
