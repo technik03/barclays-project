@@ -22,6 +22,7 @@ public class DijkstraAlgorithmImpl implements DijkstraAlgorithm {
 	@Override
 	public String findShortestPath(final String entryGate, final String destGate, final List<DirectedEdge> edges) {
 		DijkstraGraphMap dijkstraGraphMap;
+		//If entry gate has been visited, get its node map; else create it 
 		if (visitedMap.containsKey(entryGate)) {
 			dijkstraGraphMap = visitedMap.get(entryGate);
 		} else {
@@ -44,7 +45,7 @@ public class DijkstraAlgorithmImpl implements DijkstraAlgorithm {
 		for (Vertex vertex : path) {
 			line.append(vertex.getName()).append(AirportConstants.SINGLE_WHITE_SPACE.toString());
 		}
-		line.append(": ").append(path.get(path.size() - 1).getTime());
+		line.append(AirportConstants.COLON_STRING+AirportConstants.SINGLE_WHITE_SPACE.toString()).append(path.get(path.size() - 1).getTime());
 		return line.toString();
 	}
 

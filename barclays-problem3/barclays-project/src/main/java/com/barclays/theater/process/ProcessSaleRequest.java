@@ -7,9 +7,11 @@ import java.io.LineNumberReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
-import com.barclays.theater.app.TheaterApp;
+
+import com.barclays.theater.TheaterApp;
 import com.barclays.theater.model.Customer;
 import com.barclays.theater.model.CustomerSeatingRequest;
+import com.barclays.theater.util.TheaterConstants;
 
 /**
  * This class represents sale request object. It extracts info from the file.
@@ -21,7 +23,6 @@ public class ProcessSaleRequest {
 
   public ProcessSaleRequest() {
     super();
-    // TODO Auto-generated constructor stub
   }
 
   /**
@@ -61,14 +62,14 @@ public class ProcessSaleRequest {
           setCustomerSeatingRequest(customerMap, emptyLineNumber, totalLines, lineReaderText);
     } catch (IOException ioe) {
       ioe.printStackTrace();
-      System.out.println("Sorry, error while reading input file");
+      System.out.println(TheaterConstants.ERROR_WHILE_READING_INPUT_FILE.toString());
     } finally {
       if (resourceAsStream != null) {
         try {
           resourceAsStream.close();
         } catch (IOException e) {
           e.printStackTrace();
-          System.out.println("Sorry, error while closing input reader");
+          System.out.println(TheaterConstants.ERROR_WHILE_CLOSING_INPUT_READER.toString());
         }
       }
     }

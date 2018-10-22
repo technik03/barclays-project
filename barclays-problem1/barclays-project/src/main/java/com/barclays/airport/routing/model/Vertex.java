@@ -1,3 +1,6 @@
+/**
+ * @author niharika
+ */
 package com.barclays.airport.routing.model;
 
 import java.util.ArrayList;
@@ -6,19 +9,22 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.barclays.airport.util.AirportConstants;
+
 public class Vertex implements Comparable<Vertex> {
 	private final String name;
-	// Will be the total time for the shortest path to this Vertex from the source Vertex specfied in
+	// Will be the total time for the shortest path to this Vertex from the
+	// source Vertex specfied in
 	// the DijkstraGraphMap
-	private int time; //only instantiate in the constructor, the time vertex, hashmap-never do instantiation outside the constructor
+	private int time;
 	private Vertex prevVertext = null;
-	// The neighbour Vertex and the time to it
 	private Map<Vertex, Integer> neighbours;
 
+	// constructor
 	public Vertex(String name) {
 		this.name = name;
 		neighbours = new HashMap<>();
-		time = Integer.MAX_VALUE;	  
+		time = Integer.MAX_VALUE;
 	}
 
 	public String getName() {
@@ -45,7 +51,7 @@ public class Vertex implements Comparable<Vertex> {
 		return neighbours;
 	}
 
-	public int compareTo(Vertex other) { 
+	public int compareTo(Vertex other) {
 		if (time == other.time)
 			return name.compareTo(other.name);
 
@@ -53,9 +59,9 @@ public class Vertex implements Comparable<Vertex> {
 	}
 
 	/**
-	 * Return the shortest path to this Vertex from a source specified in a DijkstraGraphMap after
-	 * running the dijkstra algorithm
-	 * **use INTEGER OR INT , because you have time as int
+	 * Return the shortest path to this Vertex from a source specified in a
+	 * DijkstraGraphMap after running the dijkstra algorithm
+	 * 
 	 * @return The list of the shortest vertex path
 	 */
 
@@ -73,6 +79,6 @@ public class Vertex implements Comparable<Vertex> {
 
 	@Override
 	public String toString() {
-		return this.name + ":" + this.time;
+		return this.name + AirportConstants.COLON_STRING.toString() + this.time;
 	}
 }

@@ -17,7 +17,6 @@ public class Customer implements Serializable {
 
   public Customer() {
     super();
-    // TODO Auto-generated constructor stub
   }
 
   public Customer(String name, Integer seatingNeeded) {
@@ -77,38 +76,36 @@ public class Customer implements Serializable {
     return result;
   }
 
+  //Override implementation - checking for obj being null or other private properties being null or different across this object's and obj's properties
   @Override
   public boolean equals(Object obj) {
-    if (this == obj)
-      return true;
-    if (obj == null)
-      return false;
-    if (getClass() != obj.getClass())
-      return false;
-    Customer other = (Customer) obj;
-    if (comments == null) {
-      if (other.comments != null)
-        return false;
-    } else if (!comments.equals(other.comments))
-      return false;
-    if (name == null) {
-      if (other.name != null)
-        return false;
-    } else if (!name.equals(other.name))
-      return false;
-    if (rowAssigned == null) {
-      if (other.rowAssigned != null)
-        return false;
-    } else if (!rowAssigned.equals(other.rowAssigned))
-      return false;
-    if (seatingNeeded != other.seatingNeeded)
-      return false;
-    if (sectionAssigned == null) {
-      if (other.sectionAssigned != null)
-        return false;
-    } else if (!sectionAssigned.equals(other.sectionAssigned))
-      return false;
-    return true;
+	  if (this == obj)
+		  return true;
+	  //Checking for null && Comparing this and obj's objects
+	  if (obj == null || getClass() != obj.getClass())
+		  return false;    
+	  Customer other = (Customer) obj;
+	  //Return false if comments is null in one object and not in another or comments is not null and not equal in value.
+	  if ((comments == null && other.comments != null)
+			  || (comments != null && !comments.equals(other.comments)))    
+		  return false;
+	  //Return false if name is null in one object and not in another or name is not null and not equal in value.
+	  else if ((name == null && other.name != null)
+			  || (name != null && !name.equals(other.name)))
+		  return false;
+	  //Return false if rowAssigned is null in one object and not in another or rowAssigned is not null and not equal in value.
+	  else if ((rowAssigned == null && other.rowAssigned != null)
+			  || (rowAssigned!=null && !rowAssigned.equals(other.rowAssigned)))       
+		  return false;
+	  //Return false if the value for seatingNeeded does not match
+	  else if (seatingNeeded != other.seatingNeeded)
+		  return false;
+	  //Return false if sectionAssigned is null in one object and not in another or sectionAssigned is not null and not equal in value.
+	  else if ((sectionAssigned == null && other.sectionAssigned != null)
+			  || (sectionAssigned!=null && !sectionAssigned.equals(other.sectionAssigned)))       
+		  return false;
+	  else
+		  return true;
   }
 
   @Override

@@ -1,4 +1,4 @@
-package com.barclays.theater.app;
+package com.barclays.theater;
 
 import java.io.IOException;
 import com.barclays.theater.model.CustomerSeatingRequest;
@@ -6,6 +6,7 @@ import com.barclays.theater.process.ProcessSaleRequest;
 import com.barclays.theater.seating.CustomerSeatingAssignment;
 import com.barclays.theater.seating.DumpTheaterSeating;
 import com.barclays.theater.seating.SeatingAndCustomerOrder;
+import com.barclays.theater.util.TheaterConstants;
 
 /**
  * Main app class to execute to see the desired output.
@@ -18,7 +19,7 @@ public class TheaterApp {
     ProcessSaleRequest processPreSaleRequests = new ProcessSaleRequest();
     // read the input
     CustomerSeatingRequest seatingAndCustomerRequest =
-        processPreSaleRequests.extractInfoFromFile("theater.txt");
+        processPreSaleRequests.extractInfoFromFile(TheaterConstants.INPUT_FILE_NAME.toString());
 
     // process the input
     SeatingAndCustomerOrder extractSeatingAndCustomerOrder = new SeatingAndCustomerOrder();

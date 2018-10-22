@@ -20,7 +20,6 @@ public class CustomerSeatingRequest {
 
   public CustomerSeatingRequest() {
     super();
-    // TODO Auto-generated constructor stub
   }
 
   public CustomerSeatingRequest(TreeMap<Integer, Customer> customerMap,
@@ -88,33 +87,29 @@ public class CustomerSeatingRequest {
 
   @Override
   public boolean equals(Object obj) {
-    if (this == obj)
-      return true;
-    if (obj == null)
-      return false;
-    if (getClass() != obj.getClass())
-      return false;
-    CustomerSeatingRequest other = (CustomerSeatingRequest) obj;
-    if (customerMap == null) {
-      if (other.customerMap != null)
-        return false;
-    } else if (!customerMap.equals(other.customerMap))
-      return false;
-    if (emptyLineNumber != other.emptyLineNumber)
-      return false;
-    if (lineReaderText == null) {
-      if (other.lineReaderText != null)
-        return false;
-    } else if (!lineReaderText.equals(other.lineReaderText))
-      return false;
-    if (!Arrays.deepEquals(seatingMatrix, other.seatingMatrix))
-      return false;
-    if (totalLines == null) {
-      if (other.totalLines != null)
-        return false;
-    } else if (!totalLines.equals(other.totalLines))
-      return false;
-    return true;
+	  if (this == obj)
+		  return true;
+	  if (obj == null || getClass() != obj.getClass())
+		  return false;
+
+	  CustomerSeatingRequest other = (CustomerSeatingRequest) obj;
+	  if ((customerMap == null && other.customerMap != null)
+			  || (customerMap!=null && !customerMap.equals(other.customerMap))) 
+		  return false;    
+	  else if (emptyLineNumber != other.emptyLineNumber)
+		  return false;
+	  else if ((lineReaderText == null && other.lineReaderText != null)
+			  || (lineReaderText!=null && !lineReaderText.equals(other.lineReaderText))) 
+		  return false;
+	  //Using DeepEquals to compare the values of each index of the arrays.
+	  else if (!Arrays.deepEquals(seatingMatrix, other.seatingMatrix))
+		  return false;
+
+	  else if ((totalLines == null && other.totalLines != null)
+			  || (totalLines!=null && !totalLines.equals(other.totalLines))) 
+		  return false;
+	  else
+		  return true;
   }
 
   @Override

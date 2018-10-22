@@ -3,7 +3,7 @@ package com.barclays.theater.seating;
 import java.util.TreeMap;
 import com.barclays.theater.model.Customer;
 import com.barclays.theater.model.CustomerSeatingRequest;
-import com.barclays.theater.resources.TheaterConstants;
+import com.barclays.theater.util.TheaterConstants;
 
 /**
  * This class represents seating assignment for a customer.
@@ -17,7 +17,6 @@ public class CustomerSeatingAssignment {
 
   public CustomerSeatingAssignment() {
     super();
-    // TODO Auto-generated constructor stub
   }
 
   /**
@@ -48,7 +47,7 @@ public class CustomerSeatingAssignment {
     // using java 8 feature
     customerMap.forEach((key, customer) -> {
       if (customer.getSeatingNeeded() > highestSeatSection) {
-        customer.setComments(TheaterConstants.SPLIT_PARTY_MSG);
+        customer.setComments(TheaterConstants.SPLIT_PARTY_MSG.toString());
       }
 
     });
@@ -64,7 +63,7 @@ public class CustomerSeatingAssignment {
     // using java 8 feature
     customerMap.forEach((key, customer) -> {
       if (customer.getSeatingNeeded() > totalTheaterSeats) {
-        customer.setComments(TheaterConstants.CANNOT_HANDLE_PARTY_MSG);
+        customer.setComments(TheaterConstants.CANNOT_HANDLE_PARTY_MSG.toString());
       }
     });
   }
@@ -77,10 +76,11 @@ public class CustomerSeatingAssignment {
    */
   private void assignSeatingToCustomers(final TreeMap<Integer, Customer> customerMap,
       final Integer[][] seatingMatrix) {
+	  int totalRows = Integer.parseInt(TheaterConstants.TOTAL_ROW.toString());
     // using java 8 feature
     customerMap.forEach((key, customer) -> {
-      customerLoop: for (int row = 1; row < TheaterConstants.TOTAL_ROW; row++) {
-        for (int section = 1; section < TheaterConstants.TOTAL_ROW; section++) {
+      customerLoop: for (int row = 1; row < totalRows; row++) {
+        for (int section = 1; section < totalRows; section++) {
           // If exact match and within 3 row
         if ((seatingMatrix[row][section] == customer.getSeatingNeeded() && row < 4)
             && customer.getRowAssigned() == null) {
@@ -92,7 +92,7 @@ public class CustomerSeatingAssignment {
             && customer.getRowAssigned() == null) {
           // Check if higher number is available in front rows
           for (int rowRepeater = 1; rowRepeater < 4; rowRepeater++) {
-            for (int sectionRepeater = 1; sectionRepeater < TheaterConstants.TOTAL_ROW; sectionRepeater++) {
+            for (int sectionRepeater = 1; sectionRepeater < totalRows; sectionRepeater++) {
               if ((seatingMatrix[rowRepeater][sectionRepeater] > customer.getSeatingNeeded())
                   && customer.getRowAssigned() == null) {
                 customer.setRowAssigned(rowRepeater);
@@ -111,4 +111,6 @@ public class CustomerSeatingAssignment {
     }
   });
   }
+
+
 }

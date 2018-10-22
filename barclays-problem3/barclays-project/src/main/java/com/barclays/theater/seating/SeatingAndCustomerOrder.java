@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.TreeMap;
 import com.barclays.theater.model.Customer;
 import com.barclays.theater.model.CustomerSeatingRequest;
+import com.barclays.theater.util.TheaterConstants;
 
 /**
  * This represent seating and customer order for customer.
@@ -17,7 +18,6 @@ public class SeatingAndCustomerOrder {
 
   public SeatingAndCustomerOrder() {
     super();
-    // TODO Auto-generated constructor stub
   }
 
   /**
@@ -52,7 +52,7 @@ public class SeatingAndCustomerOrder {
   private void extractSeatingMatrix(final List<StringBuilder> lineReaderText,
       final Integer[][] seatingMatrix, final Integer i, final Integer j) {
     if (!lineReaderText.isEmpty()) {
-      String[] sectionList = lineReaderText.get(i).toString().split(" ");
+      String[] sectionList = lineReaderText.get(i).toString().split(TheaterConstants.SINGLE_SPACE.toString());
       for (int section = 0, k = 1; section < sectionList.length; section++, k++) {
         int sectionSeatsCount = Integer.parseInt(sectionList[section]);
         highestSeatSection = Math.max(highestSeatSection, sectionSeatsCount);

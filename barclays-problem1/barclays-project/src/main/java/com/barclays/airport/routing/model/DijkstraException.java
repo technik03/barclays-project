@@ -1,3 +1,6 @@
+/**
+ * @author niharika
+ */
 package com.barclays.airport.routing.model;
 
 public class DijkstraException extends RuntimeException {
